@@ -13,9 +13,9 @@ Run windows application using config file, instead of shortcuts.
 
 ## Usage
 
-The executable `runapp.exe` read all configs from file `config.arg`, the file content like below:
+The executable `"runapp.exe"` read all configs from file `"config.arg"`, the file content like below:
 
-
+**config.arg**
 ```
 chrome.exe
 --disable-infobars
@@ -31,12 +31,15 @@ https://www.google.com
 
 The config is simple, the first line is the program to launch, rest lines are arguments passed to it.
 
+Put the `"runapp.exe"` with same folder as `"config.arg"`, then run it.
+
 ## Advanced Usage
 
 1. Any empty lines will be ignored.
 
 2. `//` started is a comment line
 
+**config.arg**
 ```
 // this is comment line
 chrome.exe
@@ -44,6 +47,7 @@ chrome.exe
 
 3. `:` started is a meta command
 
+**config.arg**
 ```
 // below will run batch file in hidden window
 :style: hidden
