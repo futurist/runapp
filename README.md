@@ -63,28 +63,28 @@ Thus can run a hidden dos batch silently.
 
 ### All meta commands
 
-#### :style: normal
+#### `:style: normal`
 run application [window style](https://msdn.microsoft.com/en-us/library/system.diagnostics.processstartinfo.windowstyle(v=vs.110).aspx)
 
 Can be: normal, hidden, minimized, maximized (or any first letters matches)
 
 Default: normal
 
-#### :dir: .
+#### `:dir: .`
 set [WorkingDir](https://msdn.microsoft.com/en-us/library/system.diagnostics.processstartinfo.workingdirectory(v=vs.110).aspx) for the application
 
 Can be: Absolute path, or relative path
 
 Default: runapp folder
 
-#### :shell: true
+#### `:shell: true`
 decide whether [useShellExec](https://msdn.microsoft.com/en-us/library/system.diagnostics.processstartinfo.useshellexecute(v=vs.110).aspx)
 
 Can be: true, false
 
 Default: true
 
-#### :window: false
+#### `:window: false`
 decide whether [createWindow](https://msdn.microsoft.com/en-us/library/system.diagnostics.processstartinfo.createnowindow(v=vs.110).aspx)
 
 Can be: true, false
