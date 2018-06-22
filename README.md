@@ -33,6 +33,15 @@ The config is simple, the first line is the program to launch, rest lines are ar
 
 Put the `"runapp.exe"` with same folder as `"config.arg"`, then run it.
 
+**The arg file search algorithm**
+
+1. Read from first args passed into `runapp.exe`, that is if `runapp.exe example.arg`, then that arg file will be used.
+
+2. Find same base file name as `runapp.exe` file itself, but end with `.arg`. If the exe file is `abc.exe` then it will find `abc.arg` and use it.
+
+3. Find `config.arg` in same dir.
+
+
 ## Advanced Usage
 
 1. Any empty lines will be ignored.

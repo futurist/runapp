@@ -45,8 +45,14 @@ namespace runapp
             string[] cmdArgs = Environment.GetCommandLineArgs();
             string fileName = Process.GetCurrentProcess().MainModule.FileName;
             //MessageBox.Show(Application.StartupPath + " " + Path.GetDirectoryName(fileName));
+            string runDir = Path.GetDirectoryName(fileName);
+            string runName = Path.GetFileNameWithoutExtension(fileName);
+            string runConfig = Path.Combine(runDir, runName + ".arg");
 
-            string configFile = cmdArgs.Length < 2 ? "config.arg" : cmdArgs[1];
+            string configFile = cmdArgs.Length < 2
+                ? File.Exists(runConfig) ? runConfig : "config.arg"
+                : cmdArgs[1];
+
             string[] configArgs = null;
             int argIndex = 0;
             try
@@ -82,7 +88,6 @@ namespace runapp
                 }
             }
 
-            string runDir = Path.GetDirectoryName(fileName);
             string exePath = configArgs[argIndex++];
             if(!Path.IsPathRooted(exePath) || exePath.StartsWith(".")) exePath = Path.Combine(runDir, exePath);
 
