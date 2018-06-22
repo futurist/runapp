@@ -35,11 +35,11 @@ Put the `"runapp.exe"` with same folder as `"config.arg"`, then run it.
 
 **The arg file search algorithm**
 
-1. Read from first args passed into `runapp.exe`, that is if `runapp.exe example.arg`, then that arg file will be used.
+1. Read from first args passed into `runapp.exe`. If run `"runapp.exe example.arg"`, then `"example.arg"` file will be used.
 
-2. Find same base file name as `runapp.exe` file itself, but end with `.arg`. If the exe file is `abc.exe` then it will find `abc.arg` and use it.
+2. Find the same base file name as `runapp.exe` file itself, but end with `.arg`. If the exe file is `abc.exe` then `abc.arg` file will be used **only if it exists**.
 
-3. Find `config.arg` in same dir.
+3. Finally, `config.arg` in same dir will be used.
 
 
 ## Advanced Usage
