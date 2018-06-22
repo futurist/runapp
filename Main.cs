@@ -33,6 +33,11 @@ namespace runapp
             return one == null ? defaultVal : one;
         }
 
+        bool isFalsy(string str)
+        {
+            return str == "no" || str == "0" || str == "false";
+        }
+
         public Main()
         {
             Application.UseWaitCursor = false;
@@ -99,31 +104,37 @@ namespace runapp
             }
 
             //MessageBox.Show(args.ToString());
-            runExe(args.ToString(), exePath, getKey("window", null), getKey("style", null), getKey("dir", runDir), null, null);
+            runExe(args.ToString(), exePath, getKey("shell", null), getKey("window", null), getKey("style", null), getKey("dir", runDir), null, null);
         }
 
 
-        Process runExe(string arg, string exePath, string strWindow, string strShow, string workingDir, Action<object, EventArgs> onExit, StringBuilder outputBuilder)
+        Process runExe(string arg, string exePath, string strShell, string strWindow, string strShow, string workingDir, Action<object, EventArgs> onExit, StringBuilder outputBuilder)
         {
 
             Process myProcess = new Process();
 
             ProcessStartInfo startInfo = new ProcessStartInfo();
 
-            startInfo.UseShellExecute = true;
+            bool useShell = strShell !=null ? !isFalsy(strShell)
+                : true;
+
+            startInfo.UseShellExecute = useShell;
+
             startInfo.FileName = exePath;
 
             string style = findOne(new string[] { "Normal", "Minimized", "Maximized", "Hidden", "Hide" }, strShow, "Normal");
             //MessageBox.Show(style);
-            startInfo.WindowStyle = style == "Hidden" || style == "Hide" ? ProcessWindowStyle.Hidden
+            bool isHide = style == "Hidden" || style == "Hide";
+            startInfo.WindowStyle = isHide ? ProcessWindowStyle.Hidden
                 : style == "Minimized" ? ProcessWindowStyle.Minimized
                 : style == "Maximized" ? ProcessWindowStyle.Maximized
                 : ProcessWindowStyle.Normal;
 
-            // ignored here, since UseShellExecute = true
-            startInfo.CreateNoWindow = strWindow == "no" || strWindow == "0";
+            // when UseShellExecute = true will be ignored
+            startInfo.CreateNoWindow = isHide || isFalsy(strWindow);
 
-            //MessageBox.Show(workingDir);
+            //MessageBox.Show("" +workingDir+ startInfo.WindowStyle + useShell+ isHide + isFalsy(strWindow));
+
             if (workingDir != null) startInfo.WorkingDirectory = workingDir;
             startInfo.Arguments = arg;
 
