@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Timers;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace runapp
@@ -60,6 +61,7 @@ namespace runapp
                 using (StreamReader r = new StreamReader(configFile))
                 {
                     string content = r.ReadToEnd();
+                    content = Regex.Replace(content, @"/\*(.*?)\*/", string.Empty, RegexOptions.Singleline);
                     configArgs = content.Split(new char[]{'\n'}, StringSplitOptions.None);
                 }
             }

@@ -45,16 +45,21 @@ Put the `"runapp.exe"` with same folder as `"config.arg"`, then run it.
 ## Advanced Usage
 
 1. Any empty lines will be ignored.
-
 2. `//` started is a comment line
+3. `/* */` define a comment block
 
 **config.arg**
 ```
 // this is comment line
 chrome.exe
+/*
+this is a multi-line comment
+this is a multi-line comment
+*/
+arg1
 ```
 
-3. `:` started is a meta command
+4. `:` started is a meta command
 
 **config.arg**
 ```
